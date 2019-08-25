@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  section(class='singup section')
+    h1= title
+
+    form(method='post' class='singup-form form')
+      p(style='color: red')= text
+      p
+        label e-mail 
+        input(type='text' name='login')
+      p
+        label password 
+        input(type='password' name='password')
+      p
+        input(type='submit' value='log in')

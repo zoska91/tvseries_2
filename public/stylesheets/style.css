@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css?family=Acme&display=swap");
+body {
+  margin: 0;
+  font-family: 'Acme', sans-serif; }
+
+.nav-main {
+  background-color: #023471;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .nav-main__logo {
+    color: #DBE2EB;
+    text-transform: uppercase;
+    margin-left: 5vw;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: 0.8s;
+    text-decoration: none; }
+    .nav-main__logo:hover {
+      transform: rotateY(180deg); }
+  .nav-main__list {
+    display: flex;
+    list-style: none; }
+  .nav-main__item {
+    background-color: #4D709B;
+    height: 7vh;
+    width: 25vw;
+    margin-right: 5vw;
+    text-align: center; }
+    .nav-main__item:hover > a {
+      font-size: 1.1rem; }
+  .nav-main__link {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 7vh;
+    transition: .3s; }
+
+/*# sourceMappingURL=style.css.map */

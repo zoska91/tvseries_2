@@ -1,0 +1,51 @@
+.nav-main {
+  background-color: $main-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    color: #DBE2EB;
+    text-transform: uppercase;
+    margin-left: 5vw;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+
+    &:hover {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &__list {
+    display: flex;
+    list-style: none;
+
+  }
+
+  &__item {
+    background-color: $light-color;
+    // padding: 2vh 4vw;
+    height: 7vh;
+    width: 25vw;
+    margin-right: 5vw;
+    text-align: center;
+
+    &:hover>a {
+      font-size: 1.1rem;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 7vh;
+    transition: .3s;
+  }
+
+
+
+}

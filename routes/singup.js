@@ -16,6 +16,7 @@ router.post('/', (req, res) => {
 
   const findUser = Users.find({ login });
   findUser.exec((err, users) => {
+    //jeśli nie ma w bazie:
     if (users.length === 0) {
       console.log('dodaj');
       bcrypt.hash(password, 10, function(err, hash) {

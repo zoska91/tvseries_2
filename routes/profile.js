@@ -14,7 +14,7 @@ router.all('*', (req, res, next) => {
 router.get('/', (req, res, next) => {
   res.render('profile', {
     title: 'Profile',
-    body: req.session
+    user: req.session.profile
   });
 });
 

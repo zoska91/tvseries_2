@@ -33,10 +33,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   sassMiddleware({
-    src: path.join(__dirname, 'public/sass'),
-    dest: path.join(__dirname, 'public'),
+    src: path.join(__dirname, 'public/stylesheets/sass'),
+    dest: path.join(__dirname, 'public/stylesheets'),
     indentedSyntax: false, // true = .sass and false = .scss
-    sourceMap: true
+    sourceMap: true,
+    prefix: '/stylesheets'
+    // force: true
   })
 );
 app.use(express.static(path.join(__dirname, 'public')));

@@ -1,32 +1,46 @@
 @import url("https://fonts.googleapis.com/css?family=Acme&display=swap");
-
 body {
   margin: 0;
   font-family: 'Acme', sans-serif;
 }
 
+section {
+  padding: 10vh 10vw;
+  background-color: red;
+}
+
 .nav-main {
   background-color: #023471;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .nav-main__logo {
   color: #DBE2EB;
   text-transform: uppercase;
   margin-left: 5vw;
-  font-size: 2rem;
+  font-size: 5rem;
   cursor: pointer;
-  transition: 0.8s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
   text-decoration: none;
 }
 
 .nav-main__logo:hover {
-  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .nav-main__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   list-style: none;
 }
@@ -39,7 +53,7 @@ body {
   text-align: center;
 }
 
-.nav-main__item:hover>a {
+.nav-main__item:hover > a {
   font-size: 1.1rem;
 }
 
@@ -49,7 +63,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 7vh;
+  -webkit-transition: .3s;
   transition: .3s;
 }
-
 /*# sourceMappingURL=style.css.map */

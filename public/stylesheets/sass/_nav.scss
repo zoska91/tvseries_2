@@ -8,13 +8,13 @@
     color: #DBE2EB;
     text-transform: uppercase;
     margin-left: 5vw;
-    font-size: 2rem;
+    font-size: 5rem;
     cursor: pointer;
     transition: 0.3s;
     text-decoration: none;
 
     &:hover {
-      transform: rotateY(180deg);
+      transform: scale(1.1)
     }
   }
 
@@ -28,7 +28,7 @@
     background-color: $light-color;
     // padding: 2vh 4vw;
     height: 7vh;
-    width: 25vw;
+    width: 15vw;
     margin-right: 5vw;
     text-align: center;
 

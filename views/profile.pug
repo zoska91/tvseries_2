@@ -1,0 +1,35 @@
+
+
+extends layout
+
+block content
+  section(class='profile')
+    h1= title
+    p Hello!
+
+  div(class='searchSeries')
+    form(class='searchSeries__form')
+      input(type='text' name='searchTitle' class='searchSeries__input')
+      label
+        input(type='submit' value='Find' class='searchSeries__button') 
+    
+ 
+
+
+
+  div(class='userSeries')
+    h3(class='userSeries__header') Your TV Series
+    ul(class='userSeries__title')
+      li(class='userSeries__item') How to murder
+      li(class='userSeries__item') Gray's anathomy
+  div(class='userProposition')
+    h3(class='userProposition__header') Proposition for you
+    ul(class='userProposition__list')
+      li(class='userProposition__item') Narcos
+      li(class='userProposition__item') Narcos
+
+
+  script(src="/javascripts/profile/findSeries.js" type='text/javascript' )
+  script(src="/javascripts/profile/TvSeries.js" type='text/javascript' )
+  script(src="/javascripts/profile/Element.js" type='text/javascript' )
+  script(src="/javascripts/profile/DescriptionTvSeries.js" type='text/javascript' )

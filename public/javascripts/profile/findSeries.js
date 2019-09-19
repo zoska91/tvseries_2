@@ -24,7 +24,7 @@ findForm.addEventListener('submit', event => {
   listResult.createElement();
 
   //pobranie wyników wyszukiwania
-  const titleList = new TvSeries(title);
+  const titleList = new SearchTvSeries(title);
   titleList.showResultSearch();
 
   findInput.value = '';

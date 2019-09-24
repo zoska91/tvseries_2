@@ -1,5 +1,5 @@
 const Element = require('./Element');
-const scrollTo = require('scroll-js');
+const { scrollTo } = require('scroll-js');
 
 class DescriptionTvSeries {
   constructor(id) {
@@ -7,6 +7,8 @@ class DescriptionTvSeries {
     this.URL_id = 'http://api.tvmaze.com/shows/';
 
     this.containerResult = document.querySelector('.searchSeries__container-result');
+
+    this.heightWindow = window.innerHeight;
 
     //stworzenie kontenera
     this.descriptionOneTvSeries = new Element('div', this.containerResult, 'one-tv-series');
@@ -80,6 +82,8 @@ class DescriptionTvSeries {
           nextInfo.createElement();
         }
       });
+
+    scrollTo(document.body, { top: this.heightWindow });
   }
 }
 

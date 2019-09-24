@@ -14,6 +14,22 @@ section {
 ul {
   list-style: none; }
 
+.button {
+  width: 60vw;
+  height: 7vh;
+  color: black;
+  font-family: "Acme";
+  font-size: 1.1rem;
+  border: 2px solid #022046;
+  border-radius: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: 5vh;
+  transition: .3s; }
+  .button:hover {
+    transform: scale(1.01) translateY(-10%);
+    box-shadow: 0px 3px 2px 1px grey; }
+
 .header-main {
   min-height: 100vh;
   background: url("../../images/header.jpg") no-repeat center;
@@ -25,7 +41,7 @@ ul {
     margin: 10vh 0; }
     .header-main .searchSeries__list-result {
       margin-top: 5vh;
-      color: whitesmoke;
+      color: #e0dcdc;
       margin-top: 5vh;
       overflow-y: scroll;
       height: 40vh;
@@ -60,9 +76,9 @@ ul {
   .header-main__input {
     width: 60vw;
     height: 7vh;
-    color: whitesmoke;
+    color: #e0dcdc;
     background-color: rgba(0, 0, 0, 0.486);
-    border: 2px solid whitesmoke;
+    border: 2px solid #e0dcdc;
     font-family: "Acme";
     font-size: 1.2rem;
     border-radius: 20px;
@@ -76,7 +92,10 @@ ul {
     font-size: 1.1rem;
     border: 2px solid #022046;
     border-radius: 20px;
-    margin-left: -10vw; }
+    background-color: transparent;
+    cursor: pointer;
+    margin-left: -10vw;
+    background-color: #e0dcdc; }
 
 @keyframes title {
   0% {
@@ -118,7 +137,7 @@ ul {
     text-transform: uppercase;
     font-size: 1.2rem;
     text-decoration: none;
-    color: whitesmoke; }
+    color: #e0dcdc; }
   .nav-main__list {
     display: flex;
     list-style: none;
@@ -127,6 +146,6 @@ ul {
     margin-left: 5vw; }
   .nav-main__link {
     text-decoration: none;
-    color: whitesmoke; }
+    color: #e0dcdc; }
 
 /*# sourceMappingURL=style.css.map */

@@ -71,6 +71,7 @@
   &__button {
     @include button(25vw, 7vh, $main-color);
     margin-left: -10vw;
+    background-color: $light-color
   }
 }
 

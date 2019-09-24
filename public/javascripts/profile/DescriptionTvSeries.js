@@ -24,7 +24,7 @@ class DescriptionTvSeries {
 
   createButton(id) {
     console.log(id);
-    let form = new Element('button', this.container, 'searchSeries__btn-add-to-favorites', 'Add to my favorites');
+    let form = new Element('button', this.container, 'button', 'Add to my favorites');
     form.createElement();
 
     // fetch(`profile/add/${id}`, {

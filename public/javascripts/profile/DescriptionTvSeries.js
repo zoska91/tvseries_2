@@ -1,3 +1,6 @@
+const Element = require('./Element');
+const scrollTo = require('scroll-js');
+
 class DescriptionTvSeries {
   constructor(id) {
     this.id = id;
@@ -15,6 +18,18 @@ class DescriptionTvSeries {
     console.log(image);
     const img = new Element('img', this.container, 'one-tv-series__img-series', null, null, image);
     img.createElement();
+  }
+
+  createButton(id) {
+    console.log(id);
+    let form = new Element('button', this.container, 'searchSeries__btn-add-to-favorites', 'Add to my favorites');
+    form.createElement();
+
+    // fetch(`profile/add/${id}`, {
+    //   method: 'POST'
+    // })
+
+    // w quizie - przełanie odp z buttona
   }
 
   createTitle(name) {
@@ -49,10 +64,10 @@ class DescriptionTvSeries {
         console.log(resp);
 
         this.createImg(resp.image.medium);
+        this.createButton(this.id);
         this.createTitle(resp.name);
         this.createInfo(resp.summary);
 
-        console.log(resp._links.nextepisode);
         if (resp._links.nextepisode) {
           this.createEpisodes(resp._links.nextepisode.href);
         } else {
@@ -66,6 +81,6 @@ class DescriptionTvSeries {
         }
       });
   }
-
-  addTomyFavorites() {}
 }
+
+module.exports = DescriptionTvSeries;

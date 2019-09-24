@@ -1,5 +1,13 @@
 extends layout
 
 block content
-    h1= title
-    p Welcome to #{title}
+  header(class="header-main") 
+    include components/nav.pug  
+    h1(class="header-main__title") Find your favoritest TV Series!
+    div(class='searchSeries')
+      form(class='searchSeries__form header-main__form')
+        input(type='text' name='searchTitle' class='searchSeries__input header-main__input')
+        input(type='submit' value='Find' class='searchSeries__button header-main__button') 
+    
+
+

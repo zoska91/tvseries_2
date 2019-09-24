@@ -1,3 +1,6 @@
+const Element = require('./Element');
+const SearchTvSeries = require('./SearchTvSeries');
+
 const findBtn = document.querySelector('.searchSeries__button');
 const findForm = document.querySelector('.searchSeries__form');
 const findInput = document.querySelector('.searchSeries__input');

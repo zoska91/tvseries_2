@@ -1,0 +1,22 @@
+@mixin input($width, $height, $color) {
+  width: $width;
+  height: $height;
+  color: $color;
+  background-color: rgba(0, 0, 0, 0.486);
+  border: 2px solid $light-color;
+  font-family: $main-font;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  text-align: center;
+}
+
+@mixin button($width, $height, $color) {
+  width: $width;
+  height: $height;
+  color: $color;
+  font-family: $main-font;
+  font-size: 1.1rem;
+  border: 2px solid $main-color;
+  border-radius: 20px;
+
+}

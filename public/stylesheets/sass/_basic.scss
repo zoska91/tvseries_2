@@ -1,10 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: 'Acme', sans-serif;
+  font-family: $main-font, arial, sans-serif;
 }
 
 section {
   padding: 5vh 5vw;
+}
+
+ul {
+  list-style: none;
 }

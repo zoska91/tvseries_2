@@ -1,51 +1,33 @@
+@mixin link {
+  text-decoration: none;
+  color: $light-color;
+}
+
 .nav-main {
-  background-color: $main-color;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
+  padding: 5vh 10vw;
 
   &__logo {
-    color: #DBE2EB;
     text-transform: uppercase;
-    margin-left: 5vw;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: 0.3s;
-    text-decoration: none;
-
-    &:hover {
-      transform: scale(1.05)
-    }
+    font-size: 1.2rem;
+    @include link
   }
 
   &__list {
     display: flex;
     list-style: none;
-
+    margin: 0;
   }
 
   &__item {
-    background-color: $light-color;
-    // padding: 2vh 4vw;
-    height: 7vh;
-    width: 15vw;
-    margin-right: 5vw;
-    text-align: center;
-
-    &:hover>a {
-      font-size: 1.1rem;
-    }
+    margin-left: 5vw;
   }
 
   &__link {
-    text-decoration: none;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    line-height: 7vh;
-    transition: .3s;
+    @include link;
   }
-
-
-
 }

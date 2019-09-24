@@ -1,0 +1,127 @@
+.header-main {
+  min-height: 100vh;
+  background: url('../../images/header.jpg') no-repeat center;
+  background-size: cover;
+
+  //lista seriali
+  .searchSeries {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10vh 0;
+
+    &__list-result {
+      margin-top: 5vh;
+      color: $light-color;
+      margin-top: 5vh;
+      overflow-y: scroll;
+      height: 40vh;
+      cursor: pointer;
+      scrollbar-color: rgba(158, 194, 248, 0.534) rgba(0, 0, 0, 0.5);
+      scrollbar-width: 7px;
+
+      &::-webkit-scrollbar {
+        background-color: transparent;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+        width: 7px;
+      }
+
+      &::-webkit-scrollbar-button {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(158, 194, 248, 0.3);
+        opacity: 0.3;
+      }
+    }
+
+    &__list-item {
+      margin-bottom: 2vh;
+    }
+  }
+
+  //opis jednego serialu 
+
+  .one-tv-series {
+    position: absolute;
+    top: 100vh;
+    padding: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    color: transparent;
+    text-align: center;
+    padding: 0 5vw;
+    animation: title 10s infinite;
+  }
+
+  &__form {
+    text-align: center;
+  }
+
+  &__input {
+    @include input(60vw, 7vh, $light-color);
+    z-index: 1;
+  }
+
+  &__button {
+    @include button(25vw, 7vh, $main-color);
+    margin-left: -10vw;
+  }
+}
+
+@keyframes title {
+  0% {
+    text-shadow: none;
+  }
+
+  6% {
+    text-shadow: rgba(255, 255, 255, 0.5) 0px 3px 3px;
+  }
+
+  8% {
+    text-shadow: none;
+  }
+
+  10% {
+    text-shadow: rgba(255, 255, 255, 0.5) 0px 3px 3px;
+    transform: rotate(4deg);
+    transform-origin: left;
+  }
+
+  12% {
+    text-shadow: none;
+  }
+
+  14% {
+    text-shadow: rgb(255, 255, 255) 0px 3px 3px;
+  }
+
+  16% {
+    text-shadow: none;
+    transform: rotate(7deg);
+    transform-origin: left;
+  }
+
+  18% {
+    text-shadow: rgba(255, 255, 255, 0.5) 0px 3px 3px;
+  }
+
+  20% {
+    text-shadow: rgb(255, 255, 255) 0px 3px 3px;
+    transform: rotate(4deg);
+  }
+
+  30% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    text-shadow: rgb(255, 255, 255) 0px 0px 1px;
+    transform: rotate(0deg);
+  }
+}

@@ -1,4 +1,6 @@
-@import '_variables.scss';
-@import '_basic.scss';
-@import '_nav.scss';
-@import '_forms.scss';
+@import 'variables';
+@import 'mixins';
+@import 'basic';
+@import 'index';
+@import 'nav';
+@import 'forms';

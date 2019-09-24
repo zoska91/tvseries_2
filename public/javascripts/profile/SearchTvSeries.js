@@ -1,3 +1,6 @@
+const DescriptionTvSeries = require('./DescriptionTvSeries');
+const Element = require('./Element');
+
 class SearchTvSeries {
   constructor(title) {
     this.URL = 'http://api.tvmaze.com/search/';
@@ -13,21 +16,10 @@ class SearchTvSeries {
       .then(resp => resp);
   }
 
-  addToMyFavorites(id) {
-    let form = new Element('button', this.containerResult, 'searchSeries__btn-add-to-favorites', 'Add to my favorites');
-    form.createElement();
-
-    // fetch(`profile/add/${id}`, {
-    //   method: 'POST'
-    // })
-
-    // w quizie - przełanie odp z buttona
-  }
   //pokazuje jeden wybrany serial
   showPickTvSeries(id) {
     const result = new DescriptionTvSeries(id);
     result.createDescription();
-    this.addToMyFavorites(id);
   }
 
   //pokazuje liste szukanego tytulu
@@ -69,3 +61,5 @@ class SearchTvSeries {
     });
   }
 }
+
+module.exports = SearchTvSeries;

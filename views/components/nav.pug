@@ -1,0 +1,13 @@
+mixin itemNav(title, url)
+  li(class='nav-main__item')
+    a(href=url class=`nav-main__link`)=title
+
+nav(class='nav nav-main')
+      a(href='/' class='nav-main__logo')='Home'
+      ul(class='nav-main__list')
+        if user 
+          +itemNav('Mój profil', '/profile')  
+          +itemNav('Log out', '/profile/logout')  
+        else
+          +itemNav('Login', '/login')
+          +itemNav('Sing up', '/singup')

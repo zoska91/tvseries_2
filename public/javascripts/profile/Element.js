@@ -18,3 +18,5 @@ class Element {
     this.parent.appendChild(el);
   }
 }
+
+module.exports = Element;

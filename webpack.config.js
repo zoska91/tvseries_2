@@ -2,9 +2,9 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './public/javascripts/profile/main.js',
+  entry: './public/javascripts/search/search.js',
   output: {
     path: __dirname + '/public/javascripts',
-    filename: 'bundle.js'
+    filename: '[name].bundle.js'
   }
 };

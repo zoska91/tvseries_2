@@ -14,32 +14,17 @@ section {
 ul {
   list-style: none; }
 
-.button {
-  width: 60vw;
-  height: 7vh;
-  color: black;
-  font-family: "Acme";
-  font-size: 1.1rem;
-  border: 2px solid #022046;
-  border-radius: 20px;
-  background-color: transparent;
-  cursor: pointer;
-  margin-top: 5vh;
-  transition: .3s; }
-  .button:hover {
-    transform: scale(1.01) translateY(-10%);
-    box-shadow: 0px 3px 2px 1px grey; }
-
-.header-main {
+.main {
+  padding: 10vh 0 0 0;
   min-height: 100vh;
   background: url("../../images/header.jpg") no-repeat center;
   background-size: cover; }
-  .header-main .searchSeries {
+  .main .searchSeries {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 10vh 0; }
-    .header-main .searchSeries__list-result {
+    .main .searchSeries__list-result {
       margin-top: 5vh;
       color: #e0dcdc;
       margin-top: 5vh;
@@ -48,32 +33,47 @@ ul {
       cursor: pointer;
       scrollbar-color: rgba(158, 194, 248, 0.534) rgba(0, 0, 0, 0.5);
       scrollbar-width: 7px; }
-      .header-main .searchSeries__list-result::-webkit-scrollbar {
+      .main .searchSeries__list-result::-webkit-scrollbar {
         background-color: transparent;
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
         width: 7px; }
-      .header-main .searchSeries__list-result::-webkit-scrollbar-button {
+      .main .searchSeries__list-result::-webkit-scrollbar-button {
         background-color: rgba(0, 0, 0, 0.5); }
-      .header-main .searchSeries__list-result::-webkit-scrollbar-thumb {
+      .main .searchSeries__list-result::-webkit-scrollbar-thumb {
         background-color: rgba(158, 194, 248, 0.3);
         opacity: 0.3; }
-    .header-main .searchSeries__list-item {
+    .main .searchSeries__list-item {
       margin-bottom: 2vh; }
-  .header-main .one-tv-series {
+  .main .one-tv-series {
     position: absolute;
     top: 100vh;
     padding: 5vh;
     display: flex;
     flex-direction: column;
     align-items: center; }
-  .header-main__title {
+    .main .one-tv-series__button {
+      width: 60vw;
+      height: 7vh;
+      color: #072031;
+      font-family: "Acme";
+      font-size: 1.1rem;
+      border: 2px solid #072031;
+      border-radius: 20px;
+      background-color: transparent;
+      cursor: pointer;
+      transition: .3s;
+      margin-top: 5vh; }
+      .main .one-tv-series__button:hover {
+        transform: scale(1.01) translateY(-10%);
+        box-shadow: 0px 3px 5px 1px rgba(128, 128, 128, 0.699); }
+  .main__title {
     color: transparent;
     text-align: center;
     padding: 0 5vw;
     animation: title 10s infinite; }
-  .header-main__form {
+  .main__form {
     text-align: center; }
-  .header-main__input {
+  .main__input {
     width: 60vw;
     height: 7vh;
     color: #e0dcdc;
@@ -84,16 +84,17 @@ ul {
     border-radius: 20px;
     text-align: center;
     z-index: 1; }
-  .header-main__button {
+  .main__button {
     width: 25vw;
     height: 7vh;
-    color: #022046;
+    color: #072031;
     font-family: "Acme";
     font-size: 1.1rem;
-    border: 2px solid #022046;
+    border: 2px solid #072031;
     border-radius: 20px;
     background-color: transparent;
     cursor: pointer;
+    transition: .3s;
     margin-left: -10vw;
     background-color: #e0dcdc; }
 
@@ -128,11 +129,16 @@ ul {
     transform: rotate(0deg); } }
 
 .nav-main {
+  position: absolute;
+  height: 10vh;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1;
-  padding: 5vh 10vw; }
+  padding: 5vh 10vw;
+  background-color: transparent;
+  margin: 0; }
   .nav-main__logo {
     text-transform: uppercase;
     font-size: 1.2rem;
@@ -147,5 +153,52 @@ ul {
   .nav-main__link {
     text-decoration: none;
     color: #e0dcdc; }
+
+.login,
+.singup {
+  padding-top: 15vh;
+  min-height: 100vh;
+  background: url("../../images/header.jpg") no-repeat center;
+  background-size: cover;
+  color: #e0dcdc;
+  text-align: center; }
+  .login__title,
+  .singup__title {
+    font-size: 2rem; }
+
+.form {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10vw;
+  border-radius: 30px;
+  margin-top: 5vh; }
+  .form__label {
+    display: block;
+    margin: 4vh 0 2vh; }
+  .form__button {
+    width: 40vw;
+    height: 7vh;
+    color: #072031;
+    font-family: "Acme";
+    font-size: 1.1rem;
+    border: 2px solid #072031;
+    border-radius: 20px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: .3s;
+    margin-top: 5vh;
+    background-color: #e0dcdc; }
+    .form__button:hover {
+      transform: scale(1.01) translateY(-10%);
+      box-shadow: 0px 3px 5px 1px rgba(128, 128, 128, 0.699); }
+  .form__input {
+    width: 60vw;
+    height: 6vh;
+    color: #e0dcdc;
+    background-color: rgba(0, 0, 0, 0.486);
+    border: 2px solid #e0dcdc;
+    font-family: "Acme";
+    font-size: 1.2rem;
+    border-radius: 20px;
+    text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

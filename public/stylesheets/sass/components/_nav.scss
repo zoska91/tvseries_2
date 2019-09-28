@@ -4,12 +4,16 @@
 }
 
 .nav-main {
-
+  position: absolute;
+  height: 10vh;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1;
   padding: 5vh 10vw;
+  background-color: transparent;
+  margin: 0;
 
   &__logo {
     text-transform: uppercase;

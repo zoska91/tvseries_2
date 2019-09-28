@@ -1,0 +1,26 @@
+.form {
+  background-color: rgba(0, 0, 0, .7);
+  padding: 10vw;
+  border-radius: 30px;
+  margin-top: 5vh;
+
+  &__label {
+    display: block;
+    margin: 4vh 0 2vh;
+  }
+
+  &__button {
+    @include button(40vw, 7vh, $main-color, $main-color);
+    margin-top: 5vh;
+    background-color: $light-color;
+
+    &:hover {
+      @include button-hover;
+    }
+  }
+
+  &__input {
+    @include input(60vw, 6vh)
+  }
+
+}

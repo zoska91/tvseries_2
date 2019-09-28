@@ -1,4 +1,5 @@
-.header-main {
+.main {
+  padding: 10vh 0 0 0;
   min-height: 100vh;
   background: url('../../images/header.jpg') no-repeat center;
   background-size: cover;
@@ -50,6 +51,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    &__button {
+      @include button(60vw, 7vh, $main-color, $main-color);
+      margin-top: 5vh;
+
+      &:hover {
+        @include button-hover
+      }
+    }
   }
 
   &__title {
@@ -64,12 +74,12 @@
   }
 
   &__input {
-    @include input(60vw, 7vh, $light-color);
+    @include input(60vw, 7vh);
     z-index: 1;
   }
 
   &__button {
-    @include button(25vw, 7vh, $main-color);
+    @include button(25vw, 7vh, $main-color, $main-color);
     margin-left: -10vw;
     background-color: $light-color
   }

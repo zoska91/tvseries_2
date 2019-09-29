@@ -1,11 +1,12 @@
 class Element {
-  constructor(element, parent, nameClass, text, id, img) {
+  constructor(element, parent, nameClass, text, id, img, href) {
     this.element = element;
     this.parent = parent;
     this.nameClass = nameClass;
     this.text = text;
     this.id = id;
     this.img = img;
+    this.href = href;
   }
 
   createElement() {
@@ -14,6 +15,7 @@ class Element {
     if (this.id) el.setAttribute('date-id', this.id);
     if (this.img) el.setAttribute('src', this.img);
     if (this.text) el.innerHTML = this.text;
+    if (this.href) el.setAttribute('href', this.href);
 
     this.parent.appendChild(el);
   }

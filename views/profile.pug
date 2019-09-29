@@ -3,16 +3,15 @@
 extends layout
 
 block content
-  include components/nav.pug  
+  header(class='header header--dark')
+    include components/nav.pug  
   section(class='profile')
-    h1= title
-    p Heo!
 
     div(class='searchSeries')
       form(class='searchSeries__form')
-        input(type='text' name='searchTitle' class='searchSeries__input')
+        input(type='text' name='searchTitle' class='searchSeries__input searchSeries__input--light')
         label
-          input(type='submit' value='Find' class='searchSeries__button') 
+          input(type='submit' value='Find' class='searchSeries__button searchSeries__button--light') 
       
 
     div(class='userSeries')
@@ -20,11 +19,10 @@ block content
       ul(class='userSeries__title')
         li(class='userSeries__item') How to murder
         li(class='userSeries__item') Gray's anathomy
-    div(class='userProposition')
-      h3(class='userProposition__header') Proposition for you
-      ul(class='userProposition__list')
-        li(class='userProposition__item') Narcos
-        li(class='userProposition__item') Narcos
+
+
+        
+  script(src="/javascripts/main.bundle.js" )
 
 
   

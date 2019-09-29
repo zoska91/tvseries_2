@@ -2,8 +2,7 @@ mixin itemNav(title, url)
   li(class='nav-main__item')
     a(href=url class=`nav-main__link`)=title
 
-header(class='header')
-    nav(class="nav-main")
+nav(class="nav-main")
       a(href='/' class='nav-main__logo')='Home'
       ul(class='nav-main__list')
         if user 

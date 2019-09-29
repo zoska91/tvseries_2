@@ -1,0 +1,23 @@
+.header--dark {
+
+  .nav-main {
+    background-color: $main-color;
+  }
+}
+
+.profile {
+
+  .off {
+    display: none;
+  }
+
+  .searchSeries__list-result {
+    color: $main-color
+  }
+
+  .one-tv-series {
+    position: relative;
+    top: 0;
+    margin-top: 10vh;
+  }
+}

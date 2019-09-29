@@ -1,14 +1,18 @@
 extends layout
 
 block content
-  include components/nav.pug  
+  header(class='header')
+    include components/nav.pug  
   main(class="main") 
     h1(class="main__title") Find your favoritest TV Series!
     div(class='searchSeries')
       form(class='searchSeries__form main__form')
         input(type='text' name='searchTitle' class='searchSeries__input main__input')
         input(type='submit' value='Find' class='searchSeries__button main__button') 
-    script(src="/javascripts/main.bundle.js" )
+    
     
 
+
+
+  script(src="/javascripts/main.bundle.js" )
 

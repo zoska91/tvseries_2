@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  include components/nav.pug  
+  header(class='header')
+    include components/nav.pug  
   section(class='login section')
     h1(class='login__title')= title
 

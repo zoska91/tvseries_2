@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  include components/nav.pug  
+  header(class='header')
+    include components/nav.pug  
   section(class='singup section')
     h1(class='singup__title')= title
     form(method='post' class='login-form form')

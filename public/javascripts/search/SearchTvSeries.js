@@ -30,7 +30,6 @@ class SearchTvSeries {
     this.getList().then(resp => {
       //sprawdzenie czy sa wyniki
       if (resp.lenght != 0) {
-        console.log(resp);
         //czy jest węcej niż jeden wynik
         if (resp.length > 1) {
           resp.forEach(element => {

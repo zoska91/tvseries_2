@@ -8,30 +8,42 @@ class DescriptionTvSeries {
 
     this.containerResult = document.querySelector('.searchSeries__container-result');
 
-    this.heightWindow = window.innerHeight;
-
     //stworzenie kontenera
     this.descriptionOneTvSeries = new Element('div', this.containerResult, 'one-tv-series');
     this.descriptionOneTvSeries.createElement();
     this.container = document.querySelector('.one-tv-series');
+    this.containerFromTop = this.container.offsetTop;
   }
 
   createImg(image) {
-    console.log(image);
     const img = new Element('img', this.container, 'one-tv-series__img-series', null, null, image);
     img.createElement();
   }
 
   createButton(id) {
-    console.log(id);
-    let form = new Element('button', this.container, 'one-tv-series__button', 'Add to my favorites');
-    form.createElement();
+    if (window.location.pathname === '/profile') {
+      const button = new Element('button', this.container, 'one-tv-series__button', 'Add to my favorites');
+      button.createElement();
 
-    // fetch(`profile/add/${id}`, {
-    //   method: 'POST'
-    // })
-
-    // w quizie - przełanie odp z buttona
+      const buttonAdd = document.querySelector('.one-tv-series__button');
+      buttonAdd.addEventListener('click', () => {
+        fetch(`profile/${id}`, {
+          method: 'POST',
+          body: JSON.stringify(id)
+        });
+      });
+    } else {
+      const button = new Element(
+        'a',
+        this.container,
+        'one-tv-series__button',
+        'Login to add to your favorites',
+        null,
+        null,
+        '/profile'
+      );
+      button.createElement();
+    }
   }
 
   createTitle(name) {
@@ -63,8 +75,6 @@ class DescriptionTvSeries {
     fetch(`${this.URL_id}${this.id}`)
       .then(resp => resp.json())
       .then(resp => {
-        console.log(resp);
-
         this.createImg(resp.image.medium);
         this.createButton(this.id);
         this.createTitle(resp.name);
@@ -83,7 +93,7 @@ class DescriptionTvSeries {
         }
       });
 
-    scrollTo(document.body, { top: this.heightWindow });
+    scrollTo(document.body, { top: this.containerFromTop });
   }
 }
 

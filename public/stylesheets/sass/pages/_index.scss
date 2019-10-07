@@ -7,9 +7,14 @@
   &__title {
     color: transparent;
     text-align: center;
-    padding: 0 5vw;
+    // padding: 0 5vw;
     animation: title 10s infinite;
   }
+
+  .series-container {
+    position: absolute;
+  }
+
 }
 
 @keyframes title {

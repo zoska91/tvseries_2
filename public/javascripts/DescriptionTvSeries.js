@@ -2,17 +2,15 @@ const Element = require('./Element');
 const { scrollTo } = require('scroll-js');
 
 class DescriptionTvSeries {
-  constructor(id) {
+  constructor(id, n) {
     this.id = id;
     this.URL_id = 'http://api.tvmaze.com/shows/';
-
-    this.containerResult = document.querySelector('.searchSeries__container-result');
+    this.n = n;
+    if (document.querySelector('.userSeries'))
+      this.shortDescriptions = [...document.querySelectorAll('.one-tv-series-small')];
 
     //stworzenie kontenera
-    this.descriptionOneTvSeries = new Element('div', this.containerResult, 'one-tv-series');
-    this.descriptionOneTvSeries.createElement();
-    this.container = document.querySelector('.one-tv-series');
-    this.containerFromTop = this.container.offsetTop;
+    this.container = document.querySelector('.one-tv-series') || this.shortDescriptions[this.n];
   }
 
   createImg(image) {
@@ -37,7 +35,7 @@ class DescriptionTvSeries {
         'a',
         this.container,
         'one-tv-series__button',
-        'Login to add to your favorites',
+        'Login to add to favorites',
         null,
         null,
         '/profile'
@@ -93,8 +91,29 @@ class DescriptionTvSeries {
         }
       });
 
+    this.containerFromTop = this.container.offsetTop;
     scrollTo(document.body, { top: this.containerFromTop });
   }
-}
 
+  createOneShort() {
+    fetch(`${this.URL_id}${this.id}`)
+      .then(resp => resp.json())
+      .then(resp => {
+        this.createImg(resp.image.medium);
+        this.createTitle(resp.name);
+
+        if (resp._links.nextepisode) {
+          this.createEpisodes(resp._links.nextepisode.href);
+        } else {
+          const nextInfo = new Element(
+            'p',
+            this.container,
+            'one-tv-series__next',
+            'There are no plans for the next episode'
+          );
+          nextInfo.createElement();
+        }
+      });
+  }
+}
 module.exports = DescriptionTvSeries;

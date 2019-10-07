@@ -2,9 +2,12 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './public/javascripts/search/search.js',
+  entry: {
+    search: './public/javascripts/search/search.js',
+    showFavorites: './public/javascripts/showFavorites.js'
+  },
   output: {
-    path: __dirname + '/public/javascripts',
+    path: __dirname + '/public/javascripts/bundle',
     filename: '[name].bundle.js'
   }
 };

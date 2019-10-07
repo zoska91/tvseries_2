@@ -28,8 +28,9 @@ a {
   .main__title {
     color: transparent;
     text-align: center;
-    padding: 0 5vw;
     animation: title 10s infinite; }
+  .main .series-container {
+    position: absolute; }
 
 @keyframes title {
   0% {
@@ -175,7 +176,9 @@ a {
   background: url("../../images/header.jpg") no-repeat center;
   background-size: cover;
   color: #e0dcdc;
-  text-align: center; }
+  text-align: center;
+  padding-right: 10vw;
+  padding-left: 10vw; }
   .login__title,
   .singup__title {
     font-size: 2rem; }

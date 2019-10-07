@@ -12,6 +12,7 @@ router.all('*', (req, res, next) => {
   next();
 });
 
+//dodaje serialu do ulubionych
 router.post('/:id', (req, res) => {
   console.log('params', req.params);
 
@@ -36,6 +37,17 @@ router.post('/:id', (req, res) => {
   });
 
   res.redirect('/profile');
+});
+
+router.get('/favorites', (req, res) => {
+  const { _id: userId } = req.session.profile;
+  findFavorites = Favorite.find({ userId });
+
+  findFavorites.exec((err, data) => {
+    return res.json({
+      data
+    });
+  });
 });
 
 /* GET home page. */

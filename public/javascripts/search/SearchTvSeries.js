@@ -1,5 +1,5 @@
-const DescriptionTvSeries = require('./DescriptionTvSeries');
-const Element = require('./Element');
+const DescriptionTvSeries = require('../DescriptionTvSeries');
+const Element = require('../Element');
 
 class SearchTvSeries {
   constructor(title) {
@@ -18,7 +18,11 @@ class SearchTvSeries {
 
   //pokazuje jeden wybrany serial
   showPickTvSeries(id) {
+    const descriptionOneTvSeries = new Element('div', this.containerResult, 'one-tv-series');
+    descriptionOneTvSeries.createElement();
+
     const result = new DescriptionTvSeries(id);
+
     result.createDescription();
   }
 

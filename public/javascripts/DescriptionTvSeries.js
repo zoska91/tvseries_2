@@ -6,21 +6,24 @@ class DescriptionTvSeries {
     this.id = id;
     this.URL_id = 'http://api.tvmaze.com/shows/';
     this.n = n;
-    if (document.querySelector('.userSeries'))
+    if (document.querySelector('.userSeries')) {
       this.shortDescriptions = [...document.querySelectorAll('.one-tv-series-small')];
+    }
 
     //stworzenie kontenera
     this.container = document.querySelector('.one-tv-series') || this.shortDescriptions[this.n];
+    this.parent = ``;
+    this.parent = this.container.getAttribute('class');
   }
 
   createImg(image) {
-    const img = new Element('img', this.container, 'one-tv-series__img-series', null, null, image);
+    const img = new Element('img', this.container, `${this.parent}__img-series`, null, null, image);
     img.createElement();
   }
 
   createButton(id) {
     if (window.location.pathname === '/profile') {
-      const button = new Element('button', this.container, 'one-tv-series__button', 'Add to my favorites');
+      const button = new Element('button', this.container, `${this.parent}__button`, 'Add to my favorites');
       button.createElement();
 
       const buttonAdd = document.querySelector('.one-tv-series__button');
@@ -34,7 +37,7 @@ class DescriptionTvSeries {
       const button = new Element(
         'a',
         this.container,
-        'one-tv-series__button',
+        `${this.parent}__button`,
         'Login to add to favorites',
         null,
         null,
@@ -45,7 +48,7 @@ class DescriptionTvSeries {
   }
 
   createTitle(name) {
-    const title = new Element('h2', this.container, 'one-tv-series__title-series', name);
+    const title = new Element('h2', this.container, `${this.parent}__title-series`, name);
     title.createElement();
   }
 
@@ -55,15 +58,15 @@ class DescriptionTvSeries {
     fetch(next)
       .then(resp => resp.json())
       .then(next => {
-        const text = `Next episode: S${next.season} E${next.number} - title: ${next.name}. Date: ${next.airdate}`;
+        const text = `Next episode: S${next.season} E${next.number}. Date: ${next.airdate}`;
 
-        const nextInfo = new Element('p', this.container, 'one-tv-series__next', text);
+        const nextInfo = new Element('p', this.container, `${this.parent}__next`, text);
         nextInfo.createElement();
       });
   }
 
   createInfo(text) {
-    const info = new Element('p', this.container, 'one-tv-series__info-series', text);
+    const info = new Element('p', this.container, `${this.parent}__info-series`, text);
     info.createElement();
   }
 
@@ -84,7 +87,7 @@ class DescriptionTvSeries {
           const nextInfo = new Element(
             'p',
             this.container,
-            'one-tv-series__next',
+            `${this.parent}__next`,
             'There are no plans for the next episode'
           );
           nextInfo.createElement();
@@ -108,11 +111,14 @@ class DescriptionTvSeries {
           const nextInfo = new Element(
             'p',
             this.container,
-            'one-tv-series__next',
+            `${this.parent}__next`,
             'There are no plans for the next episode'
           );
           nextInfo.createElement();
         }
+
+        //przycisk usun z ulubionych
+        //pokaz wiecej
       });
   }
 }

@@ -97,7 +97,7 @@ a {
     align-items: center; }
     .searchSeries .one-tv-series__button {
       width: 60vw;
-      height: 7vh;
+      height: auto;
       color: #072031;
       font-family: "Acme";
       font-size: 1.1rem;
@@ -106,7 +106,9 @@ a {
       background-color: transparent;
       cursor: pointer;
       transition: .3s;
-      margin-top: 5vh; }
+      text-align: center;
+      margin-top: 5vh;
+      padding: 2vh 3vw; }
       .searchSeries .one-tv-series__button:hover {
         transform: scale(1.01) translateY(-10%);
         box-shadow: 0px 3px 5px 1px rgba(128, 128, 128, 0.699); }
@@ -138,11 +140,17 @@ a {
     background-color: transparent;
     cursor: pointer;
     transition: .3s;
+    text-align: center;
     margin-left: -10vw;
     background-color: #e0dcdc; }
   .searchSeries__button--light {
     background-color: #072031;
     color: #e0dcdc; }
+  .searchSeries__noResult {
+    color: #910101;
+    text-align: center;
+    padding: 5vh 0;
+    background-color: rgba(255, 255, 255, 0.7); }
 
 .nav-main {
   position: absolute;
@@ -202,6 +210,7 @@ a {
     background-color: transparent;
     cursor: pointer;
     transition: .3s;
+    text-align: center;
     margin-top: 5vh;
     background-color: #e0dcdc; }
     .form__button:hover {

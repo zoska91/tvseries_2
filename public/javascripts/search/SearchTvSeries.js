@@ -33,33 +33,41 @@ class SearchTvSeries {
 
     this.getList().then(resp => {
       //sprawdzenie czy sa wyniki
-      if (resp.lenght != 0) {
-        //czy jest węcej niż jeden wynik
-        if (resp.length > 1) {
-          resp.forEach(element => {
-            const text = `${element.show.name} - ${element.show.premiered} ${
-              element.show.network ? '[' + element.show.network.country.code + ']' : ''
-            }`;
+      console.log(resp);
 
-            const listItem = new Element('li', this.listResult, 'searchSeries__list-item', text, element.show.id);
-            listItem.createElement();
+      if (resp.length === 0) {
+        console.log('ok');
+        const noResult = new Element(
+          'p',
+          this.containerResult,
+          'searchSeries__noResult',
+          "We can't find your TV series :( Try again!"
+        );
+        noResult.createElement();
+      }
+      //czy jest węcej niż jeden wynik
+      else if (resp.length > 1) {
+        resp.forEach(element => {
+          const text = `${element.show.name} - ${element.show.premiered} ${
+            element.show.network ? '[' + element.show.network.country.code + ']' : ''
+          }`;
+
+          const listItem = new Element('li', this.listResult, 'searchSeries__list-item', text, element.show.id);
+          listItem.createElement();
+        });
+
+        const tvSerierToPick = [...document.querySelectorAll('.searchSeries__list-item')];
+
+        //pobiera id wybranego serialu
+        tvSerierToPick.forEach(el => {
+          el.addEventListener('click', () => {
+            const idTvSeries = el.getAttribute('date-id');
+            this.showPickTvSeries(idTvSeries);
           });
-
-          const tvSerierToPick = [...document.querySelectorAll('.searchSeries__list-item')];
-
-          //pobiera id wybranego serialu
-          tvSerierToPick.forEach(el => {
-            el.addEventListener('click', () => {
-              const idTvSeries = el.getAttribute('date-id');
-              this.showPickTvSeries(idTvSeries);
-            });
-          });
-        } else {
-          const idTvSeries = resp[0].show.id;
-          this.showPickTvSeries(idTvSeries);
-        }
+        });
       } else {
-        this.containerResult.textContent = "We can't find your TV series :( Try again!";
+        const idTvSeries = resp[0].show.id;
+        this.showPickTvSeries(idTvSeries);
       }
     });
   }

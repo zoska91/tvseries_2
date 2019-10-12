@@ -38,7 +38,7 @@ class DescriptionTvSeries {
         'a',
         this.container,
         `${this.parent}__button`,
-        'Login to add to favorites',
+        'Go to your profile to add to favorites',
         null,
         null,
         '/profile'
@@ -76,7 +76,7 @@ class DescriptionTvSeries {
     fetch(`${this.URL_id}${this.id}`)
       .then(resp => resp.json())
       .then(resp => {
-        this.createImg(resp.image.medium);
+        if (resp.image.medium) this.createImg(resp.image.medium);
         this.createButton(this.id);
         this.createTitle(resp.name);
         this.createInfo(resp.summary);

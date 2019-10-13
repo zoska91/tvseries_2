@@ -1,25 +1,14 @@
 import { DescriptionTvSeries } from "../DescriptionTvSeries";
 import { Element } from "../Element";
+import { APIs } from "../APIs";
 
 export class SearchTvSeries {
   constructor(title) {
-    this.URL = "http://api.tvmaze.com/search/";
     this.title = title;
     this.listResult = document.querySelector(".searchSeries__list-result");
     this.containerResult = document.querySelector(
       ".searchSeries__container-result"
     );
-  }
-
-  //pobiera wyniki z API
-  async getList() {
-    try {
-      const resp = await fetch(`${this.URL}shows?q=${this.title}`);
-      const data = await resp.json();
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
   }
 
   //pokazuje jeden wybrany serial
@@ -37,16 +26,16 @@ export class SearchTvSeries {
   }
 
   //pokazuje liste szukanego tytulu
-  showResultSearch() {
+  async showResultSearch() {
     //czyszczenie wynikow
     if (this.listResult) this.listResult.innerHTML = "";
 
-    this.getList().then(resp => {
+    try {
+      const API = new APIs();
+      const resp = await API.getSearchTitle(this.title);
       //sprawdzenie czy sa wyniki
-      console.log(resp);
 
       if (resp.length === 0) {
-        console.log("ok");
         const noResult = new Element(
           "p",
           this.containerResult,
@@ -89,6 +78,8 @@ export class SearchTvSeries {
         const idTvSeries = resp[0].show.id;
         this.showPickTvSeries(idTvSeries);
       }
-    });
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

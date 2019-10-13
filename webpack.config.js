@@ -4,7 +4,7 @@ module.exports = {
   mode: "development",
   entry: {
     search: "./public/javascripts/search/search.js",
-    showFavorites: "./public/javascripts/showFavorites.js"
+    showFavorites: "./public/javascripts/ShowFavorites.js"
   },
   output: {
     path: __dirname + "/public/javascripts/bundle",

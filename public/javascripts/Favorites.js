@@ -1,28 +1,22 @@
 import { DescriptionTvSeries } from "./DescriptionTvSeries";
 import { Element } from "./Element";
+import { APIs } from "./APIs";
 
 export class ShowFavorites {
   constructor() {
     this.container = document.querySelector(".userSeries");
   }
 
-  getIds() {
-    return fetch("/profile/favorites", {
-      method: "GET"
-    })
-      .then(res => res.json())
-      .then(data => data);
-  }
-
-  show() {
+  async show() {
     this.container.innerHTML = "";
     let n = 0;
 
-    this.getIds().then(data => {
-      const list = data.data;
+    try {
+      const API = new APIs();
+      const data = await API.getIdsOfFavorites();
+      const listIds = data.data;
 
-      //do poprawy!!!!!!!!!!!!!!!!
-      list.forEach(li => {
+      listIds.forEach(li => {
         const oneShortContainer = new Element(
           "div",
           this.container,
@@ -35,7 +29,9 @@ export class ShowFavorites {
 
         n++;
       });
-    });
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 

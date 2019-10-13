@@ -1,10 +1,10 @@
 import { Element } from "./Element";
 import { scrollTo } from "scroll-js";
+import { APIs } from "./APIs";
 
 export class DescriptionTvSeries {
   constructor(id, n) {
     this.id = id;
-    this.URL_id = "http://api.tvmaze.com/shows/";
     this.n = n;
     if (document.querySelector(".userSeries")) {
       this.shortDescriptions = [
@@ -32,7 +32,7 @@ export class DescriptionTvSeries {
     img.createElement();
   }
 
-  createButton(id) {
+  createButtonAddToFavorites(id) {
     if (window.location.pathname === "/profile") {
       const button = new Element(
         "button",
@@ -42,7 +42,10 @@ export class DescriptionTvSeries {
       );
       button.createElement();
 
+      //dodaj do ulubionych
       const buttonAdd = document.querySelector(".one-tv-series__button");
+
+      console.log();
       buttonAdd.addEventListener("click", () => {
         fetch(`profile/${id}`, {
           method: "POST",
@@ -75,20 +78,29 @@ export class DescriptionTvSeries {
 
   createEpisodes(next) {
     //nastepny odcinek
+    if (next) {
+      fetch(next)
+        .then(resp => resp.json())
+        .then(next => {
+          const text = `Next episode: S${next.season} E${next.number}. Date: ${next.airdate}`;
 
-    fetch(next)
-      .then(resp => resp.json())
-      .then(next => {
-        const text = `Next episode: S${next.season} E${next.number}. Date: ${next.airdate}`;
-
-        const nextInfo = new Element(
-          "p",
-          this.container,
-          `${this.parent}__next`,
-          text
-        );
-        nextInfo.createElement();
-      });
+          const nextInfo = new Element(
+            "p",
+            this.container,
+            `${this.parent}__next`,
+            text
+          );
+          nextInfo.createElement();
+        });
+    } else {
+      const nextInfo = new Element(
+        "p",
+        this.container,
+        `${this.parent}__next`,
+        "There are no plans for the next episode"
+      );
+      nextInfo.createElement();
+    }
   }
 
   createInfo(text) {
@@ -101,55 +113,42 @@ export class DescriptionTvSeries {
     info.createElement();
   }
 
-  createDescription() {
+  async createDescription() {
     this.container.innerHTML = "";
+    try {
+      const API = new APIs();
+      const resp = await API.getInfoOneId(this.id);
 
-    fetch(`${this.URL_id}${this.id}`)
-      .then(resp => resp.json())
-      .then(resp => {
-        if (resp.image.medium) this.createImg(resp.image.medium);
-        this.createButton(this.id);
-        this.createTitle(resp.name);
-        this.createInfo(resp.summary);
-
-        if (resp._links.nextepisode) {
-          this.createEpisodes(resp._links.nextepisode.href);
-        } else {
-          const nextInfo = new Element(
-            "p",
-            this.container,
-            `${this.parent}__next`,
-            "There are no plans for the next episode"
-          );
-          nextInfo.createElement();
-        }
-      });
+      if (resp.image.medium) this.createImg(resp.image.medium);
+      this.createButtonAddToFavorites(this.id);
+      this.createTitle(resp.name);
+      this.createInfo(resp.summary);
+      if (resp._links.nextepisode)
+        this.createEpisodes(resp._links.nextepisode.href);
+      else this.createEpisodes(null);
+    } catch (err) {
+      console.log(err);
+    }
 
     this.containerFromTop = this.container.offsetTop;
     scrollTo(document.body, { top: this.containerFromTop });
   }
 
-  createOneShort() {
-    fetch(`${this.URL_id}${this.id}`)
-      .then(resp => resp.json())
-      .then(resp => {
-        this.createImg(resp.image.medium);
-        this.createTitle(resp.name);
+  async createOneShort() {
+    try {
+      const API = new APIs();
+      const resp = await API.getInfoOneId(this.id);
 
-        if (resp._links.nextepisode) {
-          this.createEpisodes(resp._links.nextepisode.href);
-        } else {
-          const nextInfo = new Element(
-            "p",
-            this.container,
-            `${this.parent}__next`,
-            "There are no plans for the next episode"
-          );
-          nextInfo.createElement();
-        }
+      this.createImg(resp.image.medium);
+      this.createTitle(resp.name);
+      if (resp._links.nextepisode)
+        this.createEpisodes(resp._links.nextepisode.href);
+      else this.createEpisodes(null);
 
-        //przycisk usun z ulubionych
-        //pokaz wiecej
-      });
+      //przycisk usun z ulubionych
+      //pokaz wiecej
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

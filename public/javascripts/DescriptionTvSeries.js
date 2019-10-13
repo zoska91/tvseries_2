@@ -22,13 +22,13 @@ export class DescriptionTvSeries {
 
     this.partInfo = new PartInfo(this.parent, this.container);
     this.buttons = new Buttons(this.parent, this.container);
+    this.API = new APIs();
   }
 
   async createDescription() {
     this.container.innerHTML = "";
     try {
-      const API = new APIs();
-      const resp = await API.getInfoOneId(this.id);
+      const resp = await this.API.getInfoOneId(this.id);
 
       if (resp.image.medium) this.partInfo.createImg(resp.image.medium);
       this.buttons.createButtonAddToFavorites(this.id);
@@ -47,8 +47,7 @@ export class DescriptionTvSeries {
 
   async createOneShort() {
     try {
-      const API = new APIs();
-      const resp = await API.getInfoOneId(this.id);
+      const resp = await this.API.getInfoOneId(this.id);
 
       if (resp.image.medium) this.partInfo.createImg(resp.image.medium);
       this.partInfo.createTitle(resp.name);

@@ -25,7 +25,7 @@ export class ShowFavorites {
         oneShortContainer.createElement();
 
         const oneShort = new DescriptionTvSeries(li.seriesId, n);
-        oneShort.createOneShort(li.seriesId, n);
+        oneShort.createOneShort();
 
         n++;
       });

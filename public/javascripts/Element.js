@@ -1,4 +1,4 @@
-class Element {
+export class Element {
   constructor(element, parent, nameClass, text, id, img, href) {
     this.element = element;
     this.parent = parent;
@@ -12,13 +12,11 @@ class Element {
   createElement() {
     const el = document.createElement(this.element);
     el.classList.add(this.nameClass);
-    if (this.id) el.setAttribute('date-id', this.id);
-    if (this.img) el.setAttribute('src', this.img);
+    if (this.id) el.setAttribute("date-id", this.id);
+    if (this.img) el.setAttribute("src", this.img);
     if (this.text) el.innerHTML = this.text;
-    if (this.href) el.setAttribute('href', this.href);
+    if (this.href) el.setAttribute("href", this.href);
 
     this.parent.appendChild(el);
   }
 }
-
-module.exports = Element;

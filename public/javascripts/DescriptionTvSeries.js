@@ -1,54 +1,75 @@
-const Element = require('./Element');
-const { scrollTo } = require('scroll-js');
+import { Element } from "./Element";
+import { scrollTo } from "scroll-js";
 
-class DescriptionTvSeries {
+export class DescriptionTvSeries {
   constructor(id, n) {
     this.id = id;
-    this.URL_id = 'http://api.tvmaze.com/shows/';
+    this.URL_id = "http://api.tvmaze.com/shows/";
     this.n = n;
-    if (document.querySelector('.userSeries')) {
-      this.shortDescriptions = [...document.querySelectorAll('.one-tv-series-small')];
+    if (document.querySelector(".userSeries")) {
+      this.shortDescriptions = [
+        ...document.querySelectorAll(".one-tv-series-small")
+      ];
     }
 
     //stworzenie kontenera
-    this.container = document.querySelector('.one-tv-series') || this.shortDescriptions[this.n];
+    this.container =
+      document.querySelector(".one-tv-series") ||
+      this.shortDescriptions[this.n];
     this.parent = ``;
-    this.parent = this.container.getAttribute('class');
+    this.parent = this.container.getAttribute("class");
   }
 
   createImg(image) {
-    const img = new Element('img', this.container, `${this.parent}__img-series`, null, null, image);
+    const img = new Element(
+      "img",
+      this.container,
+      `${this.parent}__img-series`,
+      null,
+      null,
+      image
+    );
     img.createElement();
   }
 
   createButton(id) {
-    if (window.location.pathname === '/profile') {
-      const button = new Element('button', this.container, `${this.parent}__button`, 'Add to my favorites');
+    if (window.location.pathname === "/profile") {
+      const button = new Element(
+        "button",
+        this.container,
+        `${this.parent}__button`,
+        "Add to my favorites"
+      );
       button.createElement();
 
-      const buttonAdd = document.querySelector('.one-tv-series__button');
-      buttonAdd.addEventListener('click', () => {
+      const buttonAdd = document.querySelector(".one-tv-series__button");
+      buttonAdd.addEventListener("click", () => {
         fetch(`profile/${id}`, {
-          method: 'POST',
+          method: "POST",
           body: JSON.stringify(id)
         });
       });
     } else {
       const button = new Element(
-        'a',
+        "a",
         this.container,
         `${this.parent}__button`,
-        'Go to your profile to add to favorites',
+        "Go to your profile to add to favorites",
         null,
         null,
-        '/profile'
+        "/profile"
       );
       button.createElement();
     }
   }
 
   createTitle(name) {
-    const title = new Element('h2', this.container, `${this.parent}__title-series`, name);
+    const title = new Element(
+      "h2",
+      this.container,
+      `${this.parent}__title-series`,
+      name
+    );
     title.createElement();
   }
 
@@ -60,18 +81,28 @@ class DescriptionTvSeries {
       .then(next => {
         const text = `Next episode: S${next.season} E${next.number}. Date: ${next.airdate}`;
 
-        const nextInfo = new Element('p', this.container, `${this.parent}__next`, text);
+        const nextInfo = new Element(
+          "p",
+          this.container,
+          `${this.parent}__next`,
+          text
+        );
         nextInfo.createElement();
       });
   }
 
   createInfo(text) {
-    const info = new Element('p', this.container, `${this.parent}__info-series`, text);
+    const info = new Element(
+      "p",
+      this.container,
+      `${this.parent}__info-series`,
+      text
+    );
     info.createElement();
   }
 
   createDescription() {
-    this.container.innerHTML = '';
+    this.container.innerHTML = "";
 
     fetch(`${this.URL_id}${this.id}`)
       .then(resp => resp.json())
@@ -85,10 +116,10 @@ class DescriptionTvSeries {
           this.createEpisodes(resp._links.nextepisode.href);
         } else {
           const nextInfo = new Element(
-            'p',
+            "p",
             this.container,
             `${this.parent}__next`,
-            'There are no plans for the next episode'
+            "There are no plans for the next episode"
           );
           nextInfo.createElement();
         }
@@ -109,10 +140,10 @@ class DescriptionTvSeries {
           this.createEpisodes(resp._links.nextepisode.href);
         } else {
           const nextInfo = new Element(
-            'p',
+            "p",
             this.container,
             `${this.parent}__next`,
-            'There are no plans for the next episode'
+            "There are no plans for the next episode"
           );
           nextInfo.createElement();
         }
@@ -122,4 +153,3 @@ class DescriptionTvSeries {
       });
   }
 }
-module.exports = DescriptionTvSeries;

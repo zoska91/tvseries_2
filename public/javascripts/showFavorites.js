@@ -1,21 +1,21 @@
-import DescriptionTvSeries from './DescriptionTvSeries';
-import Element from './Element';
+import { DescriptionTvSeries } from "./DescriptionTvSeries";
+import { Element } from "./Element";
 
 export class ShowFavorites {
   constructor() {
-    this.container = document.querySelector('.userSeries');
+    this.container = document.querySelector(".userSeries");
   }
 
   getIds() {
-    return fetch('/profile/favorites', {
-      method: 'GET'
+    return fetch("/profile/favorites", {
+      method: "GET"
     })
       .then(res => res.json())
       .then(data => data);
   }
 
   show() {
-    this.container.innerHTML = '';
+    this.container.innerHTML = "";
     let n = 0;
 
     this.getIds().then(data => {
@@ -23,7 +23,11 @@ export class ShowFavorites {
 
       //do poprawy!!!!!!!!!!!!!!!!
       list.forEach(li => {
-        const oneShortContainer = new Element('div', this.container, 'one-tv-series-small');
+        const oneShortContainer = new Element(
+          "div",
+          this.container,
+          "one-tv-series-small"
+        );
         oneShortContainer.createElement();
 
         const oneShort = new DescriptionTvSeries(li.seriesId, n);

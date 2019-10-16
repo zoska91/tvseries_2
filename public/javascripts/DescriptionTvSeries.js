@@ -1,24 +1,24 @@
-import { Element } from "./Element";
-import { scrollTo } from "scroll-js";
-import { APIs } from "./APIs";
-import { PartInfo } from "./PartInfo";
-import { Buttons } from "./Buttons";
+import { Element } from './Element';
+import { scrollTo } from 'scroll-js';
+import { APIs } from './APIs';
+import { PartInfo } from './PartInfo';
+import { Buttons } from './Buttons';
 
 export class DescriptionTvSeries {
   constructor(id, n) {
     this.id = id;
     this.n = n;
 
-    if (document.querySelector(".userSeries")) {
+    if (document.querySelector('.userSeries')) {
       this.shortDescriptions = [
-        ...document.querySelectorAll(".one-tv-series-small")
+        ...document.querySelectorAll('.one-tv-series-small')
       ];
     }
 
     this.container =
-      document.querySelector(".one-tv-series") ||
+      document.querySelector('.one-tv-series') ||
       this.shortDescriptions[this.n];
-    this.parent = this.container.getAttribute("class");
+    this.parent = this.container.getAttribute('class');
 
     this.partInfo = new PartInfo(this.parent, this.container);
     this.buttons = new Buttons(this.parent, this.container);
@@ -26,7 +26,7 @@ export class DescriptionTvSeries {
   }
 
   async createDescription() {
-    this.container.innerHTML = "";
+    this.container.innerHTML = '';
     try {
       const resp = await this.API.getInfoOneId(this.id);
 
@@ -37,6 +37,7 @@ export class DescriptionTvSeries {
       if (resp._links.nextepisode)
         this.partInfo.createEpisodes(resp._links.nextepisode.href);
       else this.partInfo.createEpisodes(null);
+      this.buttons.createButtonMoreInfo(this.id);
     } catch (err) {
       console.log(err);
     }
@@ -55,7 +56,8 @@ export class DescriptionTvSeries {
         this.partInfo.createEpisodes(resp._links.nextepisode.href);
       else this.partInfo.createEpisodes(null);
 
-      //przycisk usun z ulubionych
+      this.buttons.createButtonRemoveFromFavorites(this.id);
+      this.buttons.createButtonMoreInfo(this.id);
       //pokaz wiecej
     } catch (err) {
       console.log(err);

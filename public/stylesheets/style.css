@@ -67,7 +67,8 @@ a {
   flex-direction: column;
   justify-content: center;
   margin: 10vh 0;
-  padding: 0 5vw; }
+  padding: 0 5vw;
+  position: relative; }
   .searchSeries__list-result {
     margin-top: 5vh;
     color: #e0dcdc;
@@ -91,7 +92,6 @@ a {
   .searchSeries .one-tv-series {
     position: absolute;
     margin: 0 5vw;
-    padding-top: 10vh;
     top: 100vh;
     width: 80vw;
     display: flex;
@@ -112,10 +112,10 @@ a {
       font-family: "Acme";
       font-size: 1.1rem;
       border: 2px solid #072031;
-      border-radius: 20px;
+      border-radius: 15px;
       background-color: transparent;
       cursor: pointer;
-      transition: .3s;
+      transition: 0.3s;
       text-align: center;
       margin-top: 5vh;
       padding: 2vh 3vw;
@@ -147,10 +147,10 @@ a {
     font-family: "Acme";
     font-size: 1.1rem;
     border: 2px solid #072031;
-    border-radius: 20px;
+    border-radius: 15px;
     background-color: transparent;
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
     text-align: center;
     margin-left: -10vw;
     background-color: #e0dcdc; }
@@ -201,6 +201,9 @@ a {
   .login__title,
   .singup__title {
     font-size: 2rem; }
+  .login p:nth-child(1),
+  .singup p:nth-child(1) {
+    color: red; }
 
 .form {
   background-color: rgba(0, 0, 0, 0.7);
@@ -217,10 +220,10 @@ a {
     font-family: "Acme";
     font-size: 1.1rem;
     border: 2px solid #072031;
-    border-radius: 20px;
+    border-radius: 15px;
     background-color: transparent;
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
     text-align: center;
     margin-top: 5vh;
     background-color: #e0dcdc; }
@@ -248,8 +251,7 @@ a {
   color: #072031; }
 
 .profile .one-tv-series {
-  position: relative;
-  top: 0;
+  top: auto;
   margin-top: 10vh; }
 
 .userSeries {
@@ -260,7 +262,8 @@ a {
     grid-template-rows: repeat(2, auto);
     margin-bottom: 5vh;
     padding-right: 3vw;
-    text-align: right; }
+    text-align: right;
+    position: relative; }
     .userSeries .one-tv-series-small:nth-child(odd) {
       background-color: #ddd; }
     .userSeries .one-tv-series-small__img-series {
@@ -272,5 +275,52 @@ a {
       margin-top: 1vh; }
     .userSeries .one-tv-series-small__next {
       font-size: 0.9rem; }
+    .userSeries .one-tv-series-small__button-remove {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background-color: #6d0101;
+      border: 2px solid #e0dcdc;
+      box-shadow: 0 0 5px 0.5px #e0dcdc;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      color: #e0dcdc;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0.8; }
+    .userSeries .one-tv-series-small__are-you-sure {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80%;
+      height: 80%;
+      transform: translate(-50%, -50%);
+      background-color: #072031;
+      color: #e0dcdc;
+      border: 4px solid #e0dcdc;
+      border-radius: 30px;
+      padding: 1vh 3vw;
+      flex-wrap: wrap;
+      text-align: center;
+      align-content: space-around; }
+      .userSeries .one-tv-series-small__are-you-sure p {
+        flex-basis: 100%; }
+      .userSeries .one-tv-series-small__are-you-sure .button {
+        width: 35%;
+        height: 30%;
+        color: #072031;
+        font-family: "Acme";
+        font-size: 1.1rem;
+        border: 2px solid #072031;
+        border-radius: 15px;
+        background-color: transparent;
+        cursor: pointer;
+        transition: 0.3s;
+        text-align: center;
+        background-color: #e0dcdc; }
 
 /*# sourceMappingURL=style.css.map */

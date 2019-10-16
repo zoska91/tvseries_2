@@ -8,6 +8,11 @@ export class Buttons {
     this.container = container;
   }
 
+  button(element, parent, nameClass, text, id) {
+    const button = new Element(element, parent, nameClass, text, id);
+    button.createElement();
+  }
+
   createButtonAddToFavorites(id) {
     if (window.location.pathname === '/profile') {
       const aa = async id => {
@@ -16,31 +21,27 @@ export class Buttons {
           let isInFavorites = resp.data.findIndex(
             x => x.seriesId === Number(id)
           );
-          console.log(isInFavorites);
 
           if (isInFavorites === -1) {
-            console.log('add');
-            const button = new Element(
+            this.button(
               'button',
               this.container,
               `${this.parent}__button`,
               'Add to my favorites'
             );
-            button.createElement();
 
             //dodaj do ulubionych
             const buttonAdd = document.querySelector('.one-tv-series__button');
 
             buttonAdd.addEventListener('click', () => {
-              fetch(`profile/${id}`, {
+              fetch(`profile/add/${id}`, {
                 method: 'POST',
                 body: JSON.stringify(id)
               });
               location.reload();
             });
           } else {
-            console.log('add');
-            const button = new Element(
+            this.button(
               'button',
               this.container,
               `${this.parent}__button`,
@@ -48,7 +49,6 @@ export class Buttons {
               <br>
               Go to your profile!`
             );
-            button.createElement();
 
             const buttonAdd = document.querySelector('.one-tv-series__button');
             buttonAdd.addEventListener('click', () => location.reload());
@@ -59,7 +59,7 @@ export class Buttons {
       };
       aa(id);
     } else {
-      const button = new Element(
+      this.button(
         'a',
         this.container,
         `${this.parent}__button`,
@@ -68,7 +68,74 @@ export class Buttons {
         null,
         '/profile'
       );
-      button.createElement();
     }
+  }
+
+  remove(id) {
+    const button = document.querySelector(`[data-id='${id}']`);
+
+    const windowsRemove = () => {
+      const windows = [
+        ...document.querySelectorAll('.one-tv-series-small__are-you-sure')
+      ];
+      windows.forEach(window => window.remove());
+    };
+
+    button.addEventListener('click', () => {
+      //skasowanie innych okienek
+      windowsRemove();
+      console.log(id);
+
+      const areYouSure = new Element(
+        'div',
+        this.container,
+        `${this.parent}__are-you-sure`,
+        `
+              <p>Are you sure you want delete this tv series from your favoritest?</p>
+              <button class="button" data-name="yes">yes</button>
+              <button class="button" data-name="no">no</button>
+              `
+      );
+      areYouSure.createElement();
+
+      const buttonNo = document.querySelector("[data-name='no']");
+      const buttonYes = document.querySelector("[data-name='yes']");
+
+      //no
+      buttonNo.addEventListener('click', windowsRemove);
+      document.addEventListener('keypress', e => {
+        if (e.keyCode === '27') windowsRemove();
+      });
+
+      //yes
+      buttonYes.addEventListener('click', () => {
+        fetch(`profile/remove/${id}`, {
+          method: 'POST',
+          body: JSON.stringify(id)
+        });
+        location.reload();
+      });
+    });
+  }
+
+  createButtonRemoveFromFavorites(id) {
+    this.button(
+      'button',
+      this.container,
+      `${this.parent}__button-remove`,
+      'x',
+      id
+    );
+
+    this.remove(id);
+  }
+
+  createButtonMoreInfo(id) {
+    this.button(
+      'button',
+      this.container,
+      `${this.parent}__button-more-info`,
+      'more info'
+    );
   }
 }

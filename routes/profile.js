@@ -13,7 +13,7 @@ router.all('*', (req, res, next) => {
 });
 
 //dodaje serialu do ulubionych
-router.post('/:id', (req, res) => {
+router.post('/add/:id', (req, res) => {
   console.log('params', req.params);
 
   const { id: seriesId } = req.params;
@@ -34,6 +34,19 @@ router.post('/:id', (req, res) => {
     } else {
       return;
     }
+  });
+
+  res.redirect('/profile');
+});
+
+router.post('/remove/:id', (req, res) => {
+  console.log('params', req.params);
+
+  const { id: seriesId } = req.params;
+  const { _id: userId } = req.session.profile;
+
+  Favorite.deleteOne({ userId, seriesId }, err => {
+    if (err) return handleError(err);
   });
 
   res.redirect('/profile');

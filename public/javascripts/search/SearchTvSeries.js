@@ -1,22 +1,22 @@
-import { DescriptionTvSeries } from "../DescriptionTvSeries";
-import { Element } from "../Element";
-import { APIs } from "../APIs";
+import { DescriptionTvSeries } from '../DescriptionTvSeries';
+import { Element } from '../Element';
+import { APIs } from '../APIs';
 
 export class SearchTvSeries {
   constructor(title) {
     this.title = title;
-    this.listResult = document.querySelector(".searchSeries__list-result");
+    this.listResult = document.querySelector('.searchSeries__list-result');
     this.containerResult = document.querySelector(
-      ".searchSeries__container-result"
+      '.searchSeries__container-result'
     );
   }
 
   //pokazuje jeden wybrany serial
   showPickTvSeries(id) {
     const descriptionOneTvSeries = new Element(
-      "div",
+      'div',
       this.containerResult,
-      "one-tv-series"
+      'one-tv-series'
     );
     descriptionOneTvSeries.createElement();
 
@@ -28,7 +28,7 @@ export class SearchTvSeries {
   //pokazuje liste szukanego tytulu
   async showResultSearch() {
     //czyszczenie wynikow
-    if (this.listResult) this.listResult.innerHTML = "";
+    if (this.listResult) this.listResult.innerHTML = '';
 
     try {
       const API = new APIs();
@@ -37,9 +37,9 @@ export class SearchTvSeries {
 
       if (resp.length === 0) {
         const noResult = new Element(
-          "p",
+          'p',
           this.containerResult,
-          "searchSeries__noResult",
+          'searchSeries__noResult',
           "We can't find your TV series :( Try again!"
         );
         noResult.createElement();
@@ -49,14 +49,14 @@ export class SearchTvSeries {
         resp.forEach(element => {
           const text = `${element.show.name} - ${element.show.premiered} ${
             element.show.network
-              ? "[" + element.show.network.country.code + "]"
-              : ""
+              ? '[' + element.show.network.country.code + ']'
+              : ''
           }`;
 
           const listItem = new Element(
-            "li",
+            'li',
             this.listResult,
-            "searchSeries__list-item",
+            'searchSeries__list-item',
             text,
             element.show.id
           );
@@ -64,13 +64,13 @@ export class SearchTvSeries {
         });
 
         const tvSerierToPick = [
-          ...document.querySelectorAll(".searchSeries__list-item")
+          ...document.querySelectorAll('.searchSeries__list-item')
         ];
 
         //pobiera id wybranego serialu
         tvSerierToPick.forEach(el => {
-          el.addEventListener("click", () => {
-            const idTvSeries = el.getAttribute("date-id");
+          el.addEventListener('click', () => {
+            const idTvSeries = el.getAttribute('data-id');
             this.showPickTvSeries(idTvSeries);
           });
         });
